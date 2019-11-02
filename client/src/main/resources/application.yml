@@ -1,0 +1,18 @@
+server:
+  port: 8080
+ 
+logging:
+  level:
+    org.springframework: TRACE
+    com.example: INFO
+
+backend:
+  server:
+    url: http://localhost:${server.port}/backend-server-path
+
+#ZUUL Proxy
+zuul:
+  routes:
+    backend-server-path:
+      path: /backend-server-path/**
+      url: http://localhost:9090/api/v1
